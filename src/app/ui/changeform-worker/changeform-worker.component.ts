@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MyWorkerType, MyWorker } from 'src/app/shared/worker.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-changeform-worker',
@@ -10,6 +11,8 @@ export class ChangeformWorkerComponent implements OnInit {
 
   title = 'Добавить или изменить сотрудника';
   myWorkerType = MyWorkerType;
+  workerGroup: FormGroup;
+  public telephoneMask = ['8',' ', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
   @Output() changeWorker = new EventEmitter();
   @Output() addWorker = new EventEmitter();
 
@@ -17,38 +20,32 @@ export class ChangeformWorkerComponent implements OnInit {
   name = '';
   surname = '';
   type = 0;
+  
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.workerGroup = new FormGroup({
+      id: new FormControl(),
+      name: new FormControl({value:'', disabled: false}, [Validators.required]),
+      surname: new FormControl({value:'', disabled: false}, [Validators.required]),
+      type: new FormControl({value:0, disabled: false}, [Validators.required]),
+      phone: new FormControl({value:'', disabled:false})
+    })
   }
 
   onAddWorker(){
-    let worker: MyWorker = {
-      id: this.id,
-      name: this.name,
-      surname: this.surname,
-      type: this.type
-    }
-    if(this.name.trim() === '' || this.surname.trim() === ''){
-      alert('Введите Фамилию и Имя');
-    }else{
-      this.addWorker.emit(worker);
-    }
+    this.workerGroup.updateValueAndValidity();
+    let worker = this.workerGroup.value;
+    this.addWorker.emit(worker);
+    console.log(this.workerGroup.value)
   }
 
   onChangeWorker(){
-    let worker: MyWorker = {
-      id: this.id,
-      name: this.name,
-      surname: this.surname,
-      type: this.type
-    }
-    if(this.name.trim() === '' && this.surname.trim() === ''){
-      alert('Введите Фамилию и Имя')
-    }else{
-      this.changeWorker.emit(worker)
-    }
+    this.workerGroup.updateValueAndValidity();
+    let worker = this.workerGroup.value;
+    this.changeWorker.emit(worker)
+    console.log(this.workerGroup.value)
   }
 
 

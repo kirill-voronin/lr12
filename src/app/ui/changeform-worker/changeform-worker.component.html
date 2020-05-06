@@ -1,37 +1,84 @@
+<!-- <h5>{{title}}</h5>
+<form [formGroup]="workerGroup">
+    <div class="row mb-3">
+        <div class="col-3">
+            <input type="number" 
+            class="form-control" 
+            placeholder="id"
+            formControlName="id"/>
+        </div>
+        <div class="col-3">
+            <input type="text" 
+            class="form-control"
+            placeholder="Новое Имя"
+            formControlName="name"/>
+        </div>
+        <div class="col-3">
+            <input type="text"
+            class="form-control" 
+            placeholder="Новая фамилия"
+            formControlName="surname"/>
+        </div>
+        <div class="col-3">
+            <select class="custom-select" formControlName="type">
+                <option [ngValue]="myWorkerType.programmer">Программист</option>
+                <option [ngValue]="myWorkerType.designer">Дизайнер</option>
+                <option [ngValue]="myWorkerType.copywriter">Рекламщик</option>
+                <option [ngValue]="myWorkerType.manager">Менеджер</option>
+            </select>
+        </div>
+        <div class="col-12 mt-2">
+            <button class="btn btn-outline-primary btn-sm" 
+            (click)="onAddWorker()"
+            [disabled]="workerGroup.invalid">
+                Добавить
+            </button>
+            <button class="btn btn-outline-primary btn-sm ml-2" (click)="onChangeWorker()">
+                Изменить
+            </button>
+        </div>
+    </div>
+</form> -->
+
 <h5>{{title}}</h5>
-<div class="row mb-3">
-    <div class="col-3">
-        <input type="number" 
-        class="form-control" 
-        placeholder="id"
-        [(ngModel)]="id"/>
+<form [formGroup]="workerGroup">
+    <div class="row mb-3">
+        <div class="col-2">
+            <input type="number" class="form-control" placeholder="id" formControlName="id" />
+        </div>
+        <div class="col-5">
+            <input type="text" class="form-control ng-invalid" placeholder="Новое Имя" formControlName="name" />
+        </div>
+        <div class="col-5">
+            <input type="text" class="form-control" placeholder="Новая фамилия" formControlName="surname" />
+        </div>
     </div>
-    <div class="col-3">
-        <input type="text" 
-        class="form-control"
-        placeholder="Новое Имя"
-        [(ngModel)]="name"/>
+    <div class="row">
+        <div class="col-6">
+            <select class="custom-select" formControlName="type">
+                <option [ngValue]="myWorkerType.programmer">Программист</option>
+                <option [ngValue]="myWorkerType.designer">Дизайнер</option>
+                <option [ngValue]="myWorkerType.copywriter">Рекламщик</option>
+                <option [ngValue]="myWorkerType.manager">Менеджер</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <input [textMask]="{mask: telephoneMask}"
+            type="text" 
+            class="form-control" 
+            placeholder="Телефон" 
+            formControlName="phone" 
+            />
+        </div>
     </div>
-    <div class="col-3">
-        <input type="text"
-        class="form-control" 
-        placeholder="Новая фамилия"
-        [(ngModel)]="surname"/>
-    </div>
-    <div class="col-3">
-        <select class="custom-select" [(ngModel)]="type">
-            <option [ngValue]="myWorkerType.programmer">Программист</option>
-            <option [ngValue]="myWorkerType.designer">Дизайнер</option>
-            <option [ngValue]="myWorkerType.copywriter">Рекламщик</option>
-            <option [ngValue]="myWorkerType.manager">Менеджер</option>
-        </select>
-    </div>
+
     <div class="col-12 mt-2">
-        <button class="btn btn-outline-primary btn-sm" (click)="onAddWorker()">
+        <button class="btn btn-outline-primary btn-sm" (click)="onAddWorker()" [disabled]="workerGroup.invalid">
             Добавить
         </button>
         <button class="btn btn-outline-primary btn-sm ml-2" (click)="onChangeWorker()">
             Изменить
         </button>
     </div>
-</div>
+
+</form>

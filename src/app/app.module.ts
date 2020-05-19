@@ -8,13 +8,17 @@ import { AppComponent } from './app.component';
 import { TableWorkersComponent } from './ui/table-workers/table-workers.component';
 // import { AddformWorkerComponent } from './ui/addform-worker/addform-worker.component';
 import { ChangeformWorkerComponent } from './ui/changeform-worker/changeform-worker.component';
+import { FilterClientsPipe } from './shared/pipes/filter-clients.pipe';
+// import { FilterformWorkerComponent } from './ui/filterform-worker/filterform-worker.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TableWorkersComponent,
-    ChangeformWorkerComponent
+    ChangeformWorkerComponent,
+    FilterClientsPipe,
+  
   ],
   imports: [
     BrowserModule,

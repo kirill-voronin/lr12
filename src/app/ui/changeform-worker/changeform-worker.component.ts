@@ -20,6 +20,7 @@ export class ChangeformWorkerComponent implements OnInit {
   name = '';
   surname = '';
   type = 0;
+
   
 
   constructor() { }

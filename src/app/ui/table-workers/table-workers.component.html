@@ -1,4 +1,6 @@
-<h5>{{title}}</h5>
+<div *ngIf="workers.length > 0">
+  <h5>{{title}}</h5>
+</div>
 <table class="table" *ngIf="workers.length > 0">
     <thead>
       <tr>

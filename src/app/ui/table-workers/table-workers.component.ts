@@ -13,6 +13,9 @@ export class TableWorkersComponent implements OnInit {
   @Input() workers: MyWorker[]=[];
   @Output() deleteWorker = new EventEmitter<number>();
 
+
+
+
   constructor() { }
 
   ngOnInit(): void {

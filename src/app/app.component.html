@@ -7,24 +7,44 @@
   <app-changeform-worker 
   (addWorker)="onAddWorker($event)"
   (changeWorker)="onChangeWorker($event)"></app-changeform-worker>
+  <div class="row my-2">
+    <div class="col-4 text-center">
+      <h5>Найти сотрудника</h5>
+    </div>
+    <div class="col-4">
+      <input 
+      type="text" 
+      class="form-control"
+      [(ngModel)]="filterName"
+      placeholder="Имя">
+    </div>
+    <div class="col-4">
+      <input 
+      type="text" 
+      class="form-control"
+      [(ngModel)]="filterSurname"
+      placeholder="Фамилия">
+    </div>
+  </div>
+  <hr>
   <app-table-workers 
   [title]="'Программисты'"
-  [workers] ="getByType(myWorkerType.programmer)"
+  [workers] ="getByType(myWorkerType.programmer) |filterClients: filterName: filterSurname"
   (deleteWorker)="onDeleteWorker($event)"
   ></app-table-workers>
   <app-table-workers 
   [title]="'Дизайнеры'"
-  [workers] ="getByType(myWorkerType.designer)"
+  [workers] ="getByType(myWorkerType.designer) |filterClients: filterName: filterSurname"
   (deleteWorker)="onDeleteWorker($event)"
   ></app-table-workers>
   <app-table-workers 
   [title]="'Рекламщики'"
-  [workers] ="getByType(myWorkerType.copywriter)"
+  [workers] ="getByType(myWorkerType.copywriter) |filterClients: filterName: filterSurname"
   (deleteWorker)="onDeleteWorker($event)"
   ></app-table-workers>
   <app-table-workers 
   [title]="'Менеджеры'"
-  [workers] ="getByType(myWorkerType.manager)"
+  [workers] ="getByType(myWorkerType.manager) |filterClients: filterName: filterSurname"
   (deleteWorker)="onDeleteWorker($event)"
   ></app-table-workers>
 </div>

@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
   title = 'Список сотрудников';
   workers: MyWorker[];
   myWorkerType = MyWorkerType;
+  filterName = '';
+  filterSurname = '';
 
   constructor(
     private httpClientServece: HttpClientsService
@@ -33,9 +35,14 @@ export class AppComponent implements OnInit {
   }
 
   getByType(type: number) {
-    return this.workers.filter(worker =>
-      worker.type === type
-    )
+    if (this.workers){
+      return this.workers.filter(worker =>
+        worker.type === type
+      )
+    }else{
+      return [];
+    }
+    
   }
 
   onDeleteWorker(id: number) {
